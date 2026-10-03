@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Automobilių supirkimas visoje Lietuvoje: važiuojančių, daužtų ir nevažiuojančių. Įvertinimas nemokamas, atsiskaitome iš karto, dokumentus sutvarkome patys.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nuvaro automobilių supirkimas">
+<meta property="og:description" content="Nuperkame automobilį tą pačią dieną. Atvykstame, įvertiname vietoje ir sumokame iš karto.">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="theme-color" content="#0A5A57">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A5A57'/%3E%3Cpath d='M18 46V18h7l14 18V18h7v28h-7L25 28v18z' fill='%23F4A300'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Nuvaro automobilių supirkimas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;700;800&display=swap">
+<style>
+/* Layout: asphalt-and-road-marking world. Left-aligned condensed headlines, a number-plate
+   quote form as the hero's centrepiece, dashed centre-line dividers between sections. */
+:root {
+  --bg: #EDF1F3;
+  --surface: #FFFFFF;
+  --ink: #0F1E27;
+  --muted: #51636F;
+  --line: #CDD7DD;
+  --brand: #0A5A57;
+  --brand-ink: #FFFFFF;
+  --accent: #F4A300;
+  --accent-ink: #1A1300;
+  --band: #0F1E27;
+  --band-ink: #EDF1F3;
+  --band-muted: #9DB0BB;
+  --band-line: #2A3C47;
+  --warn: #B3261E;
+  --plate: #FFFFFF;
+  --plate-ink: #14181B;
+  --plate-eu: #0B3FA8;
+  --plate-star: #FFD21E;
+  --font-display: "Sofia Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C151B; --surface: #14212A; --ink: #E7EEF2; --muted: #93A6B2; --line: #27373F;
+    --brand: #4CC2B8; --brand-ink: #06201F; --warn: #FF8A80;
+    --band: #14212A; --band-ink: #E7EEF2; --band-muted: #93A6B2; --band-line: #2C3E49;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C151B; --surface: #14212A; --ink: #E7EEF2; --muted: #93A6B2; --line: #27373F;
+  --brand: #4CC2B8; --brand-ink: #06201F; --warn: #FF8A80;
+  --band: #14212A; --band-ink: #E7EEF2; --band-muted: #93A6B2; --band-line: #2C3E49;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.55;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 0.95; margin: 0; text-wrap: balance; text-transform: uppercase; letter-spacing: 0.01em; }
+h1 { font-size: clamp(3.4rem, 9vw, 6.6rem); font-weight: 800; }
+h2 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 700; }
+h3 { font-size: 1.75rem; font-weight: 700; line-height: 1; }
+p { margin: 0; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand); }
+.lead { color: var(--muted); max-width: 34rem; font-size: 1.12rem; }
+
+/* header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.top-in { display: flex; align-items: center; gap: 20px; padding-block: 12px; flex-wrap: wrap; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 2rem; line-height: 1; text-transform: uppercase; text-decoration: none; letter-spacing: 0.02em; }
+.logo span { color: var(--brand); }
+.nav { display: flex; gap: 22px; margin-left: 12px; font-size: 0.95rem; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.top-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.phone { font-weight: 600; font-variant-numeric: tabular-nums; text-decoration: none; white-space: nowrap; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.lang button {
+  font: inherit; font-size: 0.82rem; font-weight: 600; padding: 5px 10px; border: 0; cursor: pointer;
+  background: transparent; color: var(--muted);
+}
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+/* hero */
+.hero { padding-block: 56px 64px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: start; }
+.hero-copy { display: flex; flex-direction: column; gap: 22px; padding-top: 12px; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 14px; padding-top: 22px; border-top: 1px solid var(--line); }
+.fact b { display: block; font-family: var(--font-display); font-size: 2.3rem; font-weight: 700; line-height: 1; text-transform: uppercase; }
+.fact span { font-size: 0.9rem; color: var(--muted); }
+
+/* quote form */
+.quote { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 16px; }
+.quote h2 { font-size: 2.1rem; }
+.quote form { display: flex; flex-direction: column; gap: 14px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field label, .field .lbl { font-size: 0.82rem; font-weight: 500; color: var(--muted); }
+.field input, .field select {
+  font: inherit; font-size: 1rem; width: 100%; padding: 11px 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+}
+.plate {
+  display: flex; align-items: stretch; background: var(--plate); border: 3px solid var(--plate-ink);
+  border-radius: 9px; overflow: hidden; max-width: 290px;
+}
+.plate-eu {
+  background: var(--plate-eu); color: #FFFFFF; width: 44px; flex: none; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px; font-size: 0.8rem; font-weight: 600;
+}
+.plate-eu i { width: 16px; height: 16px; border: 2px dotted var(--plate-star); border-radius: 50%; }
+.plate input {
+  border: 0; border-radius: 0; background: var(--plate); color: var(--plate-ink);
+  font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1;
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px 2px; min-width: 0;
+}
+.plate input::placeholder { color: #B5BCC1; }
+.btn {
+  font: inherit; font-weight: 600; font-size: 1.05rem; padding: 14px 22px; border-radius: 8px; border: 0;
+  background: var(--accent); color: var(--accent-ink); cursor: pointer; text-decoration: none; text-align: center;
+  display: inline-block; transition: transform 0.12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn[disabled] { opacity: 0.6; cursor: progress; transform: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.field input:invalid:not(:placeholder-shown) { border-color: var(--warn); }
+.small { font-size: 0.85rem; color: var(--muted); }
+.msg.is-err { border-left-color: var(--warn); }
+.callbar { display: none; }
+.msg { background: var(--bg); border-left: 4px solid var(--brand); padding: 12px 14px; font-size: 0.92rem; border-radius: 0 8px 8px 0; }
+
+/* road centre-line divider */
+.roadline { height: 6px; background: repeating-linear-gradient(90deg, var(--accent) 0 56px, transparent 56px 96px); opacity: 0.9; }
+
+section { padding-block: 72px; }
+.sec-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+
+/* what we buy */
+.buy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.buy > div { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.buy p { color: var(--muted); font-size: 0.97rem; }
+
+/* steps */
+.band { background: var(--band); color: var(--band-ink); }
+.band .eyebrow { color: var(--accent); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.steps li { display: flex; flex-direction: column; gap: 10px; border-top: 3px solid var(--band-line); padding-top: 16px; }
+.steps .n { font-family: var(--font-display); font-weight: 800; font-size: 4rem; line-height: 0.85; color: var(--accent); }
+.steps p { color: var(--band-muted); font-size: 0.97rem; }
+
+/* documents */
+.docs-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
+.docs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.docs li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.docs li:first-child { border-top: 1px solid var(--line); }
+.docs .tag { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--brand); text-transform: uppercase; }
+.docs b { display: block; font-weight: 600; }
+.docs span { color: var(--muted); font-size: 0.97rem; }
+.cities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.cities span { border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; font-size: 0.92rem; }
+
+/* faq */
+.faq { max-width: 46rem; display: flex; flex-direction: column; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 16px; }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 1.08rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-display); font-size: 1.8rem; line-height: 0.8; color: var(--brand); }
+.faq details[open] summary::after { content: "–"; }
+.faq p { color: var(--muted); margin-top: 10px; max-width: 40rem; }
+
+/* closing */
+.close-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+.close-in p { color: var(--band-muted); margin-top: 10px; }
+.close-act { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.close-act .phone { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; user-select: all; }
+footer { padding-block: 26px; font-size: 0.85rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 900px) {
+  .hero-grid, .docs-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .buy { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav { display: none; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  section { padding-block: 52px; }
+  .hero { padding-block: 32px 48px; }
+  .facts, .steps, .buy { grid-template-columns: minmax(0, 1fr); }
+  .buy > div { padding-right: 0; }
+  .quote { padding: 20px; }
+  .top-right .phone { display: none; }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+  .callbar {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--bg); border-top: 1px solid var(--line);
+  }
+  .callbar .btn { padding: 12px 10px; font-size: 1rem; }
+  .callbar .btn-call { background: var(--brand); color: var(--brand-ink); }
+  .docs li { grid-template-columns: 4.2rem minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } html { scroll-behavior: auto; } }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#top">Nu<span>varo</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#superkame" data-i18n="nav1">Ką superkame</a>
+      <a href="#eiga" data-i18n="nav2">Eiga</a>
+      <a href="#dokumentai" data-i18n="nav3">Dokumentai</a>
+      <a href="#duk" data-i18n="nav4">Klausimai</a>
+    </nav>
+    <div class="top-right">
+      <a class="phone" href="tel:+37060000000">+370 600 00000</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="lt" aria-pressed="true">LT</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="eyebrow">Automobilių supirkimas visoje Lietuvoje</p>
+        <h1 data-i18n="h1">Nuperkame automobilį <em>tą pačią dieną</em></h1>
+        <p class="lead" data-i18n="lead">Važiuojantį, daužtą ar nebeužsivedantį. Atvykstame, įvertiname vietoje, sumokame iš karto ir patys sutvarkome dokumentus „Regitroje“.</p>
+        <div class="facts">
+          <div class="fact"><b data-i18n="f1b">1–2 val.</b><span data-i18n="f1s">iki atvykimo didžiuosiuose miestuose</span></div>
+          <div class="fact"><b>0 €</b><span data-i18n="f2s">už įvertinimą ir išvežimą tralu</span></div>
+          <div class="fact"><b data-i18n="f3b">Iš karto</b><span data-i18n="f3s">sumokame grynaisiais arba pavedimu</span></div>
+        </div>
+      </div>
+
+      <div class="quote" id="pasiulymas">
+        <h2 data-i18n="qh">Kaina per 15 minučių</h2>
+        <form id="quote-form">
+          <div class="field">
+            <label for="f-plate" data-i18n="l-plate">Valstybinis numeris (nebūtina)</label>
+            <div class="plate">
+              <span class="plate-eu" aria-hidden="true"><i></i>LT</span>
+              <input id="f-plate" name="plate" maxlength="7" placeholder="ABC 123" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-model" data-i18n="l-model">Markė ir modelis</label>
+            <input id="f-model" name="model" required placeholder="Volkswagen Passat">
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="f-year" data-i18n="l-year">Metai</label>
+              <input id="f-year" name="year" type="number" inputmode="numeric" min="1980" max="2026" placeholder="2012">
+            </div>
+            <div class="field">
+              <label for="f-km" data-i18n="l-km">Rida, km</label>
+              <input id="f-km" name="km" type="number" inputmode="numeric" min="0" step="1000" placeholder="240000">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="f-state" data-i18n="l-state">Būklė</label>
+              <select id="f-state" name="state">
+                <option data-i18n="s1">Važiuojantis</option>
+                <option data-i18n="s2">Su gedimais</option>
+                <option data-i18n="s3">Po avarijos</option>
+                <option data-i18n="s4">Nevažiuojantis</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-city" data-i18n="l-city">Miestas</label>
+              <select id="f-city" name="city">
+                <option>Vilnius</option><option>Kaunas</option><option>Klaipėda</option>
+                <option>Šiauliai</option><option>Panevėžys</option>
+                <option data-i18n="c-other">Kitas miestas</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-phone" data-i18n="l-phone">Telefonas</label>
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel" pattern="[+0-9 ()\-]{8,18}" placeholder="+370 6">
+          </div>
+          <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off"></div>
+          <button class="btn" id="f-submit" type="submit" data-i18n="submit">Gauti kainos pasiūlymą</button>
+          <p class="msg" id="form-msg" role="status" hidden></p>
+          <p class="small" data-i18n="q-note">Įvertinimas nemokamas ir niekuo neįpareigoja. Pateikdami užklausą sutinkate, kad susisieksime nurodytu telefonu.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadline" aria-hidden="true"></div>
+
+  <section id="superkame">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="b-eye">Ką superkame</p>
+        <h2 data-i18n="b-h">Bet kokios būklės automobilius</h2>
+      </div>
+      <div class="buy">
+        <div><h3 data-i18n="b1h">Važiuojančius</h3><p data-i18n="b1p">Bet kokios markės ir metų, su galiojančia technine apžiūra ar be jos.</p></div>
+        <div><h3 data-i18n="b2h">Po avarijos</h3><p data-i18n="b2p">Daužtus, su kėbulo, pakabos ar oro pagalvių pažeidimais.</p></div>
+        <div><h3 data-i18n="b3h">Su gedimais</h3><p data-i18n="b3p">Variklio, pavarų dėžės ar elektronikos defektai mūsų negąsdina.</p></div>
+        <div><h3 data-i18n="b4h">Nevažiuojančius</h3><p data-i18n="b4p">Atvykstame su tralu ir išvežame patys. Jums tai nekainuoja.</p></div>
+        <div><h3 data-i18n="b5h">Be TA ir draudimo</h3><p data-i18n="b5p">Pasibaigusi techninė apžiūra ar draudimas sandoriui netrukdo.</p></div>
+        <div><h3 data-i18n="b6h">Komercinius</h3><p data-i18n="b6p">Mikroautobusus ir lengvuosius krovininius automobilius iki 3,5 t.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="eiga">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="s-eye">Eiga</p>
+        <h2 data-i18n="s-h">Nuo skambučio iki pinigų</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><h3 data-i18n="st1h">Užklausa</h3><p data-i18n="st1p">Užpildote formą arba paskambinate. Tai užtrunka apie minutę.</p></li>
+        <li><span class="n">2</span><h3 data-i18n="st2h">Preliminari kaina</h3><p data-i18n="st2p">Per 15 minučių perskambiname ir pasakome kainos rėžius.</p></li>
+        <li><span class="n">3</span><h3 data-i18n="st3h">Apžiūra</h3><p data-i18n="st3p">Atvykstame jums patogiu laiku, apžiūrime automobilį ir pasakome galutinę kainą.</p></li>
+        <li><span class="n">4</span><h3 data-i18n="st4h">Sutartis ir pinigai</h3><p data-i18n="st4p">Pasirašome pirkimo–pardavimo sutartį, sumokame ir užregistruojame savininko pasikeitimą.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="dokumentai">
+    <div class="wrap docs-grid">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="d-eye">Dokumentai</p>
+        <h2 data-i18n="d-h">Ko reikės sandoriui</h2>
+        <p class="lead" data-i18n="d-lead">Sutartį paruošiame mes. Jums užtenka turėti keturis dalykus.</p>
+        <div class="cities" aria-label="Cities">
+          <span>Vilnius</span><span>Kaunas</span><span>Klaipėda</span><span>Šiauliai</span><span>Panevėžys</span>
+          <span data-i18n="c-all">ir visa Lietuva</span>
+        </div>
+      </div>
+      <ul class="docs">
+        <li><span class="tag">SDK</span><div><b data-i18n="d1b">Savininko deklaravimo kodas</b><span data-i18n="d1s">Gaunamas „Regitros“ savitarnoje. Jei jo dar neturite, padėsime susikurti internetu per kelias minutes.</span></div></li>
+        <li><span class="tag" data-i18n="d2t">Liud.</span><div><b data-i18n="d2b">Registracijos liudijimas</b><span data-i18n="d2s">Automobilio registracijos dokumentas savininko vardu.</span></div></li>
+        <li><span class="tag">ID</span><div><b data-i18n="d3b">Asmens dokumentas</b><span data-i18n="d3s">Pasas arba asmens tapatybės kortelė.</span></div></li>
+        <li><span class="tag" data-i18n="d4t">Raktai</span><div><b data-i18n="d4b">Visi rakteliai</b><span data-i18n="d4s">Taip pat serviso knygelė ir antras ratų komplektas, jei turite.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="roadline" aria-hidden="true"></div>
+
+  <section id="duk">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="q-eye">Klausimai</p>
+        <h2 data-i18n="q-h">Dažniausiai klausiama</h2>
+      </div>
+      <div class="faq">
+        <details open><summary data-i18n="q1">Ar įvertinimas kainuoja?</summary><p data-i18n="a1">Ne. Atvykimas, apžiūra ir pasiūlymas nemokami. Jei kaina netinka, tiesiog atsisveikiname.</p></details>
+        <details><summary data-i18n="q2">Kaip atsiskaitote?</summary><p data-i18n="a2">Pasirašius sutartį, dar prieš išvažiuojant automobiliui. Sumas iki 5 000 € galime sumokėti grynaisiais, didesnes mokame banko pavedimu, kaip numato įstatymas.</p></details>
+        <details><summary data-i18n="q3">Ar perkate nevažiuojančius automobilius?</summary><p data-i18n="a3">Taip. Atvykstame su tralu ir išvežame patys, papildomai mokėti nereikia.</p></details>
+        <details><summary data-i18n="q4">Kas sutvarko dokumentus?</summary><p data-i18n="a4">Mes. Paruošiame pirkimo–pardavimo sutartį ir užregistruojame savininko pasikeitimą „Regitroje“. Jums niekur važiuoti nereikia.</p></details>
+        <details><summary data-i18n="q5">Automobilis registruotas ne mano vardu. Ką daryti?</summary><p data-i18n="a5">Sandoryje turi dalyvauti savininkas arba reikia notaro patvirtinto įgaliojimo.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap close-in">
+      <div>
+        <h2 data-i18n="e-h">Parduokite šiandien</h2>
+        <p data-i18n="e-p">Dirbame kasdien nuo 8 iki 21 val.</p>
+      </div>
+      <div class="close-act">
+        <span class="phone">+370 600 00000</span>
+        <a class="btn" href="#pasiulymas" data-i18n="e-btn">Gauti pasiūlymą</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="callbar">
+  <a class="btn btn-call" href="tel:+37060000000" data-i18n="bar-call">Skambinti</a>
+  <a class="btn" href="#pasiulymas" data-i18n="bar-quote">Gauti kainą</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nuvaro</span>
+    <span data-i18n="foot">Demonstracinis projektas. Įmonė ir kontaktai išgalvoti.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Заявки: вставьте сюда ключ Web3Forms (web3forms.com). Пока ключ пустой, форма работает в демо-режиме.
+  var WEB3FORMS_KEY = "";
+
+  var MSG = {
+    lt: {
+      demo: "Demonstracinis režimas: užklausa dar niekur nesiunčiama.",
+      sending: "Siunčiame…",
+      ok: "Užklausa išsiųsta. Tai demonstracinis projektas, ją gavo svetainės autorius.",
+      err: "Nepavyko išsiųsti. Patikrinkite interneto ryšį ir bandykite dar kartą arba paskambinkite."
+    },
+    ru: {
+      demo: "Демо-режим: заявка пока никуда не отправляется.",
+      sending: "Отправляем…",
+      ok: "Заявка отправлена. Это демонстрационный проект, её получил автор сайта.",
+      err: "Не удалось отправить. Проверьте интернет и попробуйте ещё раз или позвоните."
+    }
+  };
+  var lang = "lt", msgKey = null;
+  var RU = {
+    nav1: "Что выкупаем", nav2: "Как это проходит", nav3: "Документы", nav4: "Вопросы",
+    eyebrow: "Выкуп автомобилей по всей Литве",
+    h1: "Выкупим автомобиль <em>в тот же день</em>",
+    lead: "На ходу, после ДТП или тот, что уже не заводится. Приезжаем, оцениваем на месте, платим сразу и сами оформляем документы в «Регитре».",
+    f1b: "1–2 часа", f1s: "до приезда в крупных городах",
+    f2s: "за оценку и вывоз эвакуатором",
+    f3b: "Сразу", f3s: "платим наличными или переводом",
+    qh: "Цена за 15 минут",
+    "l-plate": "Госномер (необязательно)", "l-model": "Марка и модель", "l-year": "Год", "l-km": "Пробег, км",
+    "l-state": "Состояние", "l-city": "Город", "l-phone": "Телефон",
+    s1: "На ходу", s2: "С неисправностями", s3: "После ДТП", s4: "Не на ходу",
+    "c-other": "Другой город",
+    submit: "Узнать цену",
+    "q-note": "Оценка бесплатна и ни к чему не обязывает. Отправляя заявку, вы соглашаетесь, что мы свяжемся с вами по указанному телефону.",
+    "bar-call": "Позвонить", "bar-quote": "Узнать цену",
+    "b-eye": "Что выкупаем", "b-h": "Автомобили в любом состоянии",
+    b1h: "На ходу", b1p: "Любой марки и года, с действующим техосмотром или без него.",
+    b2h: "После ДТП", b2p: "Битые, с повреждениями кузова, подвески или подушек безопасности.",
+    b3h: "С неисправностями", b3p: "Проблемы с двигателем, коробкой передач или электроникой нас не пугают.",
+    b4h: "Не на ходу", b4p: "Приезжаем с эвакуатором и вывозим сами. Для вас это бесплатно.",
+    b5h: "Без ТО и страховки", b5p: "Просроченный техосмотр или страховка сделке не мешают.",
+    b6h: "Коммерческие", b6p: "Микроавтобусы и лёгкие грузовые автомобили до 3,5 т.",
+    "s-eye": "Как это проходит", "s-h": "От звонка до денег",
+    st1h: "Заявка", st1p: "Заполняете форму или звоните. Это занимает около минуты.",
+    st2h: "Предварительная цена", st2p: "Перезваниваем за 15 минут и называем диапазон цены.",
+    st3h: "Осмотр", st3p: "Приезжаем в удобное вам время, осматриваем автомобиль и называем окончательную цену.",
+    st4h: "Договор и деньги", st4p: "Подписываем договор купли-продажи, платим и регистрируем смену владельца.",
+    "d-eye": "Документы", "d-h": "Что нужно для сделки",
+    "d-lead": "Договор готовим мы. Вам достаточно иметь четыре вещи.",
+    "c-all": "и вся Литва",
+    d1b: "Код декларирования владельца", d1s: "Выдаётся в самообслуживании «Регитры». Если его ещё нет, поможем получить онлайн за несколько минут.",
+    d2t: "Свид.", d2b: "Свидетельство о регистрации", d2s: "Регистрационный документ автомобиля на имя владельца.",
+    d3b: "Удостоверение личности", d3s: "Паспорт или ID-карта.",
+    d4t: "Ключи", d4b: "Все ключи", d4s: "А также сервисная книжка и второй комплект колёс, если есть.",
+    "q-eye": "Вопросы", "q-h": "Частые вопросы",
+    q1: "Оценка платная?", a1: "Нет. Выезд, осмотр и предложение бесплатны. Если цена не устроит, просто прощаемся.",
+    q2: "Как вы платите?", a2: "После подписания договора, до того как автомобиль уедет. Суммы до 5 000 € можем выплатить наличными, большие платим банковским переводом, как требует закон.",
+    q3: "Покупаете автомобили не на ходу?", a3: "Да. Приезжаем с эвакуатором и вывозим сами, доплачивать не нужно.",
+    q4: "Кто оформляет документы?", a4: "Мы. Готовим договор купли-продажи и регистрируем смену владельца в «Регитре». Вам никуда ехать не нужно.",
+    q5: "Автомобиль зарегистрирован не на меня. Что делать?", a5: "В сделке должен участвовать владелец, либо нужна нотариально заверенная доверенность.",
+    "e-h": "Продайте сегодня", "e-p": "Работаем ежедневно с 8 до 21.",
+    "e-btn": "Получить предложение",
+    foot: "Демонстрационный проект. Компания и контакты вымышлены."
+  };
+  var nodes = document.querySelectorAll("[data-i18n]");
+  var LT = {};
+  nodes.forEach(function (n) { LT[n.dataset.i18n] = n.innerHTML; });
+
+  var msgEl = document.getElementById("form-msg");
+  function showMsg(key) {
+    msgKey = key;
+    msgEl.textContent = MSG[lang][key];
+    msgEl.classList.toggle("is-err", key === "err");
+    msgEl.hidden = false;
+  }
+  function setLang(l) {
+    lang = l;
+    if (msgKey) showMsg(msgKey);
+    var dict = lang === "ru" ? RU : LT;
+    nodes.forEach(function (n) {
+      var v = dict[n.dataset.i18n];
+      if (v !== undefined) n.innerHTML = v;
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+    });
+    try { localStorage.setItem("nuvaro-lang", lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.dataset.lang); });
+  });
+  var saved = "lt";
+  try { saved = localStorage.getItem("nuvaro-lang") || "lt"; } catch (e) {}
+  if (location.hash === "#ru") saved = "ru";
+  setLang(saved === "ru" ? "ru" : "lt");
+  window.addEventListener("hashchange", function () {
+    if (location.hash === "#ru") setLang("ru");
+    if (location.hash === "#lt") setLang("lt");
+  });
+
+  // Номер в формате ABC 123
+  var plate = document.getElementById("f-plate");
+  plate.addEventListener("input", function () {
+    var v = plate.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+    plate.value = v.length > 3 ? v.slice(0, 3) + " " + v.slice(3) : v;
+  });
+
+  var form = document.getElementById("quote-form");
+  var submitBtn = document.getElementById("f-submit");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form.botcheck.checked) return;
+    if (!WEB3FORMS_KEY) { showMsg("demo"); return; }
+    var data = {
+      access_key: WEB3FORMS_KEY,
+      subject: "Nuvaro: nauja užklausa — " + form.model.value,
+      from_name: "Nuvaro svetainė",
+      "Automobilis": form.model.value,
+      "Valst. numeris": form.plate.value || "—",
+      "Metai": form.year.value || "—",
+      "Rida, km": form.km.value || "—",
+      "Būklė": form.state.value,
+      "Miestas": form.city.value,
+      "Telefonas": form.phone.value,
+      "Kalba": lang
+    };
+    submitBtn.disabled = true;
+    showMsg("sending");
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.success) throw new Error(r.message || "send failed");
+        showMsg("ok");
+        form.reset();
+      })
+      .catch(function () { showMsg("err"); })
+      .then(function () { submitBtn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
